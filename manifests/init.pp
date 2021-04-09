@@ -536,6 +536,10 @@
 #                                           invokes when on static_file_content requests.
 #                                           Defaults to undef
 #
+# $server_allow_thread_dump_api::           Allow access to the jruby-pool/thread-dump API endpoint for
+#                                           hosts defined in server_admin_api_whitelist.
+#                                           Defaults to false.
+#
 # === Usage:
 #
 # * Simple usage:
@@ -734,6 +738,7 @@ class puppet (
   Optional[Integer[1]] $server_max_open_files = $puppet::params::server_max_open_files,
   Optional[Stdlib::Absolutepath] $server_versioned_code_id = undef,
   Optional[Stdlib::Absolutepath] $server_versioned_code_content = undef,
+  Boolean $server_allow_thread_dump_api = false,
 ) inherits puppet::params {
   contain puppet::config
 

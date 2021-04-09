@@ -137,6 +137,7 @@ class puppet::server::puppetserver (
   $max_open_files                         = $puppet::server::max_open_files,
   $versioned_code_id                      = $puppet::server::versioned_code_id,
   $versioned_code_content                 = $puppet::server::versioned_code_content,
+  $allow_thread_dump_api                  = $puppet::server::allow_thread_dump_api,
 ) {
   include puppet::server
 

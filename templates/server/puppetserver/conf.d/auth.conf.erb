@@ -199,6 +199,22 @@ authorization: {
             sort-order: 200
             name: "jruby-pool"
         },
+<%- if scope.function_versioncmp([@puppetversion, '6.6.0']) >= 0 && @allow_thread_dump_api -%>
+        {
+            match-request: {
+                path: "/puppet-admin-api/v1/jruby-pool/thread-dump"
+                type: path
+                method: get
+            }
+            allow: [
+<%- @server_admin_api_whitelist.each do |client| -%>
+                "<%= client %>",
+<%- end -%>
+            ]
+            sort-order: 201
+            name: "jruby-pool-thread-dump"
+        },
+<%- end -%>
         {
             match-request: {
                 path: "/puppet/v3/environments"

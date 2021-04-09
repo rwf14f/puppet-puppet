@@ -330,6 +330,10 @@
 # $versioned_code_content::            Contains the path to an executable script that Puppet Server invokes when an agent makes
 #                                      a static_file_content API request for the contents of a file resource that
 #                                      has a source attribute with a puppet:/// URI value.
+#
+# $allow_thread_dump_api::             Allow access to the jruby-pool/thread-dump API endpoint for
+#                                      hosts defined in server_admin_api_whitelist.
+#                                      Defaults to false.
 class puppet::server(
   Variant[Boolean, Stdlib::Absolutepath] $autosign = $puppet::autosign,
   Array[String] $autosign_entries = $puppet::autosign_entries,
@@ -449,6 +453,7 @@ class puppet::server(
   Optional[Integer[1]] $max_open_files = $puppet::server_max_open_files,
   Optional[Stdlib::Absolutepath] $versioned_code_id = $puppet::server_versioned_code_id,
   Optional[Stdlib::Absolutepath] $versioned_code_content = $puppet::server_versioned_code_content,
+  Boolean $allow_thread_dump_api = $puppet::server_allow_thread_dump_api,
 ) {
   if $ca {
     $ssl_ca_cert     = "${ssl_dir}/ca/ca_crt.pem"
